@@ -20,7 +20,20 @@ const Hero = () => {
       once: true,
       easing: 'ease-out'
     });
+    // AOS only reveals elements on scroll events and caches positions at init,
+    // so after a reload-at-position some in-view elements can stay invisible.
+    // This observer guarantees anything that enters the viewport animates in.
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('aos-animate');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('[data-aos]').forEach((el) => revealObserver.observe(el));
     // Video does NOT autoplay anymore
+    return () => revealObserver.disconnect();
   }, []);
 
   const toggleVideo = (e) => {
@@ -81,8 +94,8 @@ const Hero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="absolute inset-0 z-20 px-6 pb-20 md:pb-[8%] md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-end md:justify-between items-start md:items-end text-left w-full">
-        
+      <div className="absolute inset-0 z-20 px-6 pb-24 md:pb-10 md:px-12 pt-32 md:pt-36 max-w-7xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center md:items-center gap-10 md:gap-8 text-left w-full">
+
         {/* Left Side: Text and Buttons */}
         <div className="flex flex-col items-start text-left max-w-2xl w-full">
           {/* Mobile / Hero inline socials */}
@@ -154,17 +167,16 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* Right Side: Portrait */}
         {!heroVideo && heroPhoto && (
-          <div data-aos="zoom-in" data-aos-delay="500" className="hidden md:flex items-center justify-center self-center md:self-end mb-4">
-            <div className="relative animate-float">
-              <div className="absolute -inset-4 rounded-full bg-[#52dec5]/20 blur-2xl animate-pulse" />
-              <div className="absolute -inset-2 rounded-full border-2 border-dashed border-[#52dec5]/70 animate-[spin_30s_linear_infinite]" />
-              <img
-                src={heroPhoto}
-                alt={personalInfo.name}
-                className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full object-cover border-4 border-white/90 shadow-[0_20px_60px_rgba(82,222,197,0.20)]"
-              />
-            </div>
+          <div data-aos="zoom-in" data-aos-delay="400" className="relative animate-float hidden md:block">
+            <div className="absolute -inset-4 rounded-full bg-[#52dec5]/20 blur-2xl animate-pulse" />
+            <div className="absolute -inset-2 rounded-full border-2 border-dashed border-[#52dec5]/70 animate-[spin_30s_linear_infinite]" />
+            <img
+              src={heroPhoto}
+              alt={personalInfo.name}
+              className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full object-cover object-top border-4 border-white/90 shadow-[0_20px_60px_rgba(82,222,197,0.20)]"
+            />
           </div>
         )}
         {heroVideo && (

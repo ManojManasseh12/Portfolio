@@ -8,22 +8,45 @@ const avatarFormal = Object.values(formals)[0];
 
 const initials = personalInfo.name.split(' ').map((w) => w[0]).join('');
 
+const quickFacts = [
+  {
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    ),
+    label: personalInfo.location,
+  },
+  {
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.42A12 12 0 0118 21H6a12 12 0 01-.16-10.42L12 14z" />
+    ),
+    label: "B.Tech CSE · 85% (2020–2024)",
+  },
+  {
+    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,
+    label: "Open to opportunities",
+    highlight: true,
+  },
+];
+
 const About = () => {
   return (
-    <section id="about" className="pt-20 pb-40 px-6 md:px-12 w-full relative overflow-hidden font-sans">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-start">
-        
-        {/* Left Side: ID Badge and Skills */}
-        <div className="flex flex-col items-center w-full md:w-[350px] shrink-0 mt-12 md:mt-0">
-          
-          <div data-aos="drop-bounce" className="relative flex justify-center w-full">
+    <section id="about" className="relative w-full overflow-hidden bg-[#0b1220] pt-24 pb-32 px-6 md:px-12 font-sans">
+      {/* Ambient glow */}
+      <div className="absolute top-1/3 right-0 w-[420px] h-[420px] bg-[#52dec5]/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto grid md:grid-cols-[300px_1fr] lg:grid-cols-[320px_1fr] gap-12 lg:gap-16 items-start relative z-20">
+
+        {/* Left Side: ID Badge + quick facts */}
+        <div data-aos="drop-bounce" className="flex flex-col items-center w-full md:sticky md:top-28">
+
+          <div className="relative flex justify-center w-full">
             {/* Lanyard string */}
             <div className="absolute -top-32 left-1/2 w-3 h-40 bg-black transform -translate-x-1/2 shadow-inner z-0"></div>
             {/* Lanyard clip */}
             <div className="absolute -top-6 left-1/2 w-6 h-12 bg-gray-300 rounded border border-gray-400 transform -translate-x-1/2 z-10 shadow-[0_2px_10px_rgba(0,0,0,0.3)]"></div>
-            
+
             {/* Badge Card */}
-            <div className="bg-gray-900 w-full max-w-[280px] rounded-2xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative z-20 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+            <div className="bg-gray-900 w-full max-w-[270px] rounded-2xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative z-20 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
               {/* Cutout Hole */}
               <div className="absolute -top-3 left-1/2 w-16 h-6 bg-gray-900 rounded-t-xl transform -translate-x-1/2 flex justify-center items-center">
                 <div className="w-8 h-2 bg-black/30 rounded-full shadow-inner"></div>
@@ -55,45 +78,90 @@ const About = () => {
             </div>
           </div>
 
-        </div>
-
-        {/* Right Side: Info Content */}
-        <div data-aos="fade-left" data-aos-delay="200" className="flex-1 text-white mt-8 md:mt-0 relative z-20">
-          
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">{aboutContent.heading}</h2>
-          <p 
-            className="text-lg font-bold mb-12 leading-relaxed max-w-3xl text-red-50"
-            dangerouslySetInnerHTML={{ __html: aboutContent.bio }}
-          />
-
-          {/* Tech icons row */}
-          <div className="flex flex-wrap items-center gap-8 md:gap-10 mt-8">
-            {aboutContent.techIcons.map((tech, i) => (
-              <div
-                key={tech.name}
-                data-aos="zoom-in"
-                data-aos-delay={300 + i * 150}
-                className="hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-2xl flex flex-col items-center gap-2"
-              >
-                <img
-                  src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${tech.icon}.svg`}
-                  alt={tech.name}
-                  className="w-14 h-14 md:w-16 md:h-16 drop-shadow-lg"
-                />
-                <span className="text-xs font-bold text-white/70 uppercase tracking-wider">{tech.name}</span>
+          {/* Quick facts */}
+          <div className="w-full max-w-[270px] mt-8 rounded-2xl border border-white/10 bg-white/[0.03] divide-y divide-white/[0.06]">
+            {quickFacts.map((fact) => (
+              <div key={fact.label} className="flex items-center gap-3 px-4 py-3">
+                <span className={`shrink-0 ${fact.highlight ? 'text-[#52dec5]' : 'text-white/40'}`}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {fact.icon}
+                  </svg>
+                </span>
+                <span className={`text-[12.5px] font-medium leading-snug ${fact.highlight ? 'text-[#52dec5]' : 'text-white/65'}`}>
+                  {fact.label}
+                </span>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Highlights Section */}
+        {/* Right Side: Info Content */}
+        <div data-aos="fade-left" data-aos-delay="150" className="text-white">
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white/60 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#52dec5] animate-pulse" />
+            About Me
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
+            {aboutContent.heading}
+          </h2>
+
+          <p
+            className="text-[15px] md:text-base font-normal text-white/65 leading-[1.85] max-w-2xl"
+            dangerouslySetInnerHTML={{ __html: aboutContent.bio }}
+          />
+
+          {/* Tech stack */}
+          <div className="mt-12">
+            <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+              Stack I Build With
+            </p>
+            <div className="grid grid-cols-5 gap-2 md:gap-3">
+              {aboutContent.techIcons.map((tech, i) => (
+                <div
+                  key={tech.name}
+                  data-aos="zoom-in"
+                  data-aos-delay={150 + i * 60}
+                  className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.035] px-2 py-3.5 transition-colors duration-300 hover:border-[#52dec5]/40 hover:bg-[#52dec5]/[0.07]"
+                >
+                  <img
+                    src={tech.icon.startsWith('http')
+                      ? tech.icon
+                      : `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${tech.icon}.svg`}
+                    alt={tech.name}
+                    loading="lazy"
+                    className="w-7 h-7 md:w-8 md:h-8 object-contain"
+                  />
+                  <span className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold text-white/45 uppercase tracking-[0.06em] md:tracking-wider text-center leading-tight group-hover:text-white/80 transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Highlights */}
           {aboutContent.highlights && (
-            <div data-aos="fade-up" data-aos-delay="700" className="mt-12 bg-black/20 rounded-xl p-6 backdrop-blur-sm border border-white/10">
-              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-4">Key Highlights</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="mt-12">
+              <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+                Key Highlights
+              </p>
+              <div className="grid sm:grid-cols-2 gap-x-10">
                 {aboutContent.highlights.map((highlight, index) => (
-                  <p key={index} className="text-sm font-semibold text-white/80 leading-relaxed">
-                    {highlight}
-                  </p>
+                  <div
+                    key={index}
+                    data-aos="fade-up"
+                    data-aos-delay={200 + index * 60}
+                    className="flex h-full items-start gap-3 py-3 border-b border-white/[0.06]"
+                  >
+                    <svg className="w-3.5 h-3.5 mt-1 shrink-0 text-[#52dec5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-[13.5px] font-medium text-white/65 leading-relaxed">
+                      {highlight.replace(/^▸\s*/, '')}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>

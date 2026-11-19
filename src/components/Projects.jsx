@@ -1,5 +1,12 @@
 import { projects, socialLinks } from '../data/portfolioData';
 
+// Optional: drop a 16:9 thumbnail at src/assets/projects/<project-id>.(png|jpg|webp)
+const thumbnails = import.meta.glob('../assets/projects/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' });
+const thumbsById = Object.fromEntries(
+  Object.entries(thumbnails).map(([path, url]) => [path.split('/').pop().replace(/\.[^.]+$/, ''), url])
+);
+const thumbFor = (id) => thumbsById[id];
+
 const GitHubIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -12,21 +19,44 @@ const ExternalLinkIcon = () => (
   </svg>
 );
 
-const ProjectCard = ({ project, aosDelay }) => (
-  <div 
-    data-aos="fade-up"
-    data-aos-delay={aosDelay}
-    className={`relative rounded-2xl p-[1px] group transition-all duration-500 ${
-      project.isFlagship 
-        ? 'bg-gradient-to-br from-red-500/50 via-white/10 to-red-500/30 hover:from-red-500 hover:via-red-400/30 hover:to-red-500/60' 
-        : 'bg-white/10 hover:bg-white/20'
-    }`}
-  >
-    <div className={`rounded-2xl p-6 md:p-8 h-full backdrop-blur-md transition-all duration-500 ${
-      project.isFlagship 
-        ? 'bg-[#0d1521]/95 group-hover:bg-[#0d1521]/90' 
-        : 'bg-[#101a2b]/90 group-hover:bg-[#101a2b]/80'
-    }`}>
+const ProjectCard = ({ project, aosDelay }) => {
+  const thumbnail = thumbFor(project.id);
+  const hasActions = Boolean(
+    project.links?.github ||
+    project.links?.demo ||
+    project.links?.frontendDemo ||
+    project.links?.backendApi
+  );
+  return (
+    <div 
+      data-aos="fade-up"
+      data-aos-delay={aosDelay}
+      className={`relative rounded-2xl p-[1px] group overflow-hidden transition-all duration-500 ${
+        project.isFlagship 
+          ? 'bg-gradient-to-br from-red-500/50 via-white/10 to-red-500/30 hover:from-red-500 hover:via-red-400/30 hover:to-red-500/60' 
+          : 'bg-white/10 hover:bg-white/20'
+      }`}
+    >
+      <div className={`rounded-2xl p-6 md:p-8 h-full backdrop-blur-md transition-all duration-500 ${
+        project.isFlagship 
+          ? 'bg-[#0d1521]/95 group-hover:bg-[#0d1521]/90' 
+          : 'bg-[#101a2b]/90 group-hover:bg-[#101a2b]/80'
+      }`}>
+      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+
+        {/* Small thumbnail — right side on desktop, on top on mobile */}
+        {thumbnail && (
+          <div className="relative overflow-hidden rounded-xl border border-white/10 shadow-lg shrink-0 w-full md:w-56 lg:w-72 md:order-2">
+            <img
+              src={thumbnail}
+              alt={`${project.title} — project thumbnail`}
+              loading="lazy"
+              className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        )}
+
+        <div className="flex-1 min-w-0">
       {/* Badge */}
       {project.badge && (
         <span className="inline-block text-xs font-bold tracking-widest uppercase text-red-400 bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20 mb-4">
@@ -46,7 +76,7 @@ const ProjectCard = ({ project, aosDelay }) => (
       </p>
 
       {/* Tech Tags */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className={`flex flex-wrap gap-2 ${hasActions ? 'mb-8' : ''}`}>
         {project.techTags.map((tag) => (
           <span 
             key={tag}
@@ -57,7 +87,18 @@ const ProjectCard = ({ project, aosDelay }) => (
         ))}
       </div>
 
+      {/* Private / client-owned note */}
+      {project.note && (
+        <div className="flex items-start gap-2 mt-5 text-white/35">
+          <svg className="w-3.5 h-3.5 mt-[3px] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span className="text-[12px] leading-relaxed max-w-xl">{project.note}</span>
+        </div>
+      )}
+
       {/* Action Buttons */}
+      {hasActions && (
       <div className="flex flex-wrap items-center gap-3">
         {/* GitHub */}
         {project.links?.github && (
@@ -110,27 +151,14 @@ const ProjectCard = ({ project, aosDelay }) => (
             Backend API
           </a>
         )}
-
-        {/* Fallback for proprietary / enterprise projects with private source */}
-        {!project.links?.github && !project.links?.demo && !project.links?.frontendDemo && !project.links?.backendApi && (
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-              Proprietary Enterprise System
-            </span>
-            <a 
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-semibold hover:bg-[#52dec5] hover:border-[#52dec5] hover:text-[#0b1220] transition-all duration-300"
-            >
-              Discuss Architecture &rarr;
-            </a>
-          </div>
-        )}
+      </div>
+      )}
+        </div>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const Projects = () => {
   return (

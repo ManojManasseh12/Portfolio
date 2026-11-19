@@ -78,7 +78,7 @@ const Services = () => {
       ref={containerRef}
       className="pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
     >
-      <div className="max-w-6xl mx-auto relative md:h-[1350px]">
+      <div className="max-w-6xl mx-auto relative md:h-[1600px]">
         
         {/* Header Content */}
         <div data-aos="fade-up" className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0">
@@ -100,39 +100,28 @@ const Services = () => {
 
         {/* Desktop SVG Animated Dashed Line */}
         <svg 
-          className="hidden md:block absolute top-0 left-0 w-full h-[1350px] pointer-events-none z-0" 
-          viewBox="0 0 1000 1350" 
+          className="hidden md:block absolute top-0 left-0 w-full h-[1600px] pointer-events-none z-0" 
+          viewBox="0 0 1000 1600" 
           preserveAspectRatio="none"
         >
-          {/* Faint background path (optional guide) */}
-          <path 
-            d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200" 
-            fill="none" 
-            stroke="#cbd5e1" 
-            strokeWidth="2" 
-            strokeDasharray="8 10" 
-          />
-
-          {/* Mask to reveal the dashed path based on scroll */}
-          <mask id="path-mask">
-            <motion.path 
-              d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200" 
-              fill="none" 
-              stroke="white" 
-              strokeWidth="20" 
-              style={{ pathLength }}
-            />
-          </mask>
-
-          {/* The actual dashed line that gets revealed */}
-          <path 
-            d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200" 
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          {/* Glowing green dashed line revealed on scroll */}
+          <motion.path 
+            d="M 650,350 C 400,450 200,550 300,750 C 400,950 750,900 700,1100 C 650,1300 400,1300 300,1400" 
             fill="none" 
             stroke="#52dec5" 
-            strokeWidth="2" 
+            strokeWidth="2.5" 
             strokeDasharray="8 10" 
-            mask="url(#path-mask)"
-            className="drop-shadow-sm"
+            style={{ pathLength }}
+            filter="url(#glow)"
           />
         </svg>
 
@@ -142,32 +131,24 @@ const Services = () => {
           viewBox="0 0 4 100" 
           preserveAspectRatio="none"
         >
-          <path 
-            d="M 2,0 L 2,100" 
-            fill="none" 
-            stroke="#cbd5e1" 
-            strokeWidth="4" 
-            strokeDasharray="4 6" 
-            vectorEffect="non-scaling-stroke"
-          />
-          <mask id="path-mask-mobile">
-            <motion.path 
-              d="M 2,0 L 2,100" 
-              fill="none" 
-              stroke="white" 
-              strokeWidth="4" 
-              style={{ pathLength }}
-              vectorEffect="non-scaling-stroke"
-            />
-          </mask>
-          <path 
+          <defs>
+            <filter id="glow-mobile">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <motion.path 
             d="M 2,0 L 2,100" 
             fill="none" 
             stroke="#52dec5" 
             strokeWidth="4" 
             strokeDasharray="4 6" 
-            mask="url(#path-mask-mobile)"
+            style={{ pathLength }}
             vectorEffect="non-scaling-stroke"
+            filter="url(#glow-mobile)"
           />
         </svg>
 
@@ -176,10 +157,10 @@ const Services = () => {
           
           {skillsContent.cards.map((card, index) => {
             const positions = [
-              "md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6",
-              "md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6",
-              "md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3",
-              "md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3",
+              "md:absolute md:top-[280px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6",
+              "md:absolute md:top-[650px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6",
+              "md:absolute md:top-[950px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3",
+              "md:absolute md:top-[1280px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3",
             ];
             const aosTypes = ["fade-left", "fade-right", "fade-left", "fade-right"];
             const aosDelays = ["100", "200", "300", "400"];
@@ -203,7 +184,7 @@ const Services = () => {
           <div 
             data-aos="fade-in" 
             data-aos-delay="600"
-            className="hidden md:block absolute top-[1250px] left-[60%] font-['Caveat',cursive] text-3xl text-white/50 rotate-6"
+            className="hidden md:block absolute top-[1500px] left-[60%] font-['Caveat',cursive] text-3xl text-white/50 rotate-6"
           >
             {skillsContent.endText}
           </div>

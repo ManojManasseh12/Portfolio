@@ -15,7 +15,7 @@ export const personalInfo = {
     secondary: "manojithesh1205@gmail.com",
   },
   summary:
-    "Software Developer building React.js applications and integrating REST APIs for CRM/ERP workflows, including role-based UI, reusable components and KPI/analytics interfaces. Skilled in JavaScript, SQL, debugging and application troubleshooting.",
+    "Software Developer with professional experience building React.js applications and integrating REST APIs, alongside practical exposure to AI/ML and Generative AI. Currently learning LLMs, RAG, prompt engineering and LangChain through a Generative AI internship, and developing API Fix, an AI-powered API error analysis application using document retrieval and LLM-generated troubleshooting suggestions.",
   resumeUrl: "/Manoj_R_Resume.pdf",
 };
 
@@ -28,7 +28,7 @@ export const heroContent = {
   greeting: "Hi, I'm Manoj",
   titleHighlight: "Software Developer",
   subtitle:
-    "Building React.js applications, REST API integrations, and role-based CRM/ERP interfaces with reusable components and KPI dashboards.",
+    "Building React.js applications, REST API integrations and AI-powered tools — currently exploring LLMs, RAG and LangChain through a Generative AI internship.",
   ctaPrimary: { text: "View My Work", href: "#projects" },
   ctaSecondary: {
     text: "Contact Me",
@@ -39,20 +39,26 @@ export const heroContent = {
 
 export const aboutContent = {
   heading: "Hello!",
-  bio: `Hi, my name is <span class="text-red-400 text-xl font-black mx-1 tracking-wide uppercase">Manoj R</span>, a Software Developer based in Chennai. I build React.js applications and integrate REST APIs for CRM/ERP workflows — role-based interfaces, reusable components, and KPI/analytics dashboards. I hold a B.Tech in Computer Science Engineering (2020–2024) and enjoy debugging, troubleshooting, and turning business workflows into clean, usable interfaces.`,
+  bio: `Hi, my name is <span class="text-red-400 text-xl font-black mx-1 tracking-wide uppercase">Manoj R</span>, a Software Developer based in Chennai. I build React.js applications and integrate REST APIs for CRM/ERP workflows — role-based interfaces, reusable components, and KPI/analytics dashboards. Alongside that, I'm building practical AI/ML and Generative AI skills — learning LLMs, RAG, prompt engineering and LangChain, and developing API Fix, an AI-powered app that analyzes API errors with document retrieval and LLM-generated troubleshooting suggestions. I hold a B.Tech in Computer Science Engineering (2020–2024) and enjoy debugging, troubleshooting, and turning business workflows into clean, usable interfaces.`,
   techIcons: [
     { name: "React", icon: "react/react-original" },
     { name: "JavaScript", icon: "javascript/javascript-original" },
-    { name: "Node.js", icon: "nodejs/nodejs-original" },
+    { name: "Python", icon: "python/python-original" },
+    { name: "FastAPI", icon: "fastapi/fastapi-original" },
     { name: "Tailwind CSS", icon: "tailwindcss/tailwindcss-original" },
+    { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/52dec5" },
+    { name: "n8n", icon: "https://cdn.simpleicons.org/n8n/EA4B71" },
+    { name: "Make", icon: "https://cdn.simpleicons.org/make/A78BFA" },
+    { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/699ECA" },
+    { name: "Supabase", icon: "https://cdn.simpleicons.org/supabase/3FCF8E" },
   ],
   highlights: [
-    "⭐ Software Developer at GLDIGI Solutions (Jan – Sep 2026)",
-    "⭐ React.js + REST API integration for CRM/ERP workflows",
-    "⭐ Role-based UI for administrator, employee, client & superadmin",
-    "⭐ KPI/analytics interfaces with frontend caching",
-    "⭐ B.Tech CSE — 85% (2020–2024)",
-    "⭐ AWS Restart trained · Automation with Generative AI ",
+    "▸ Generative AI Intern at Dr. Reddy's Foundation (Oct 2026 – Present)",
+    "▸ Software Developer at GLDIGI Solutions (Jan – Sep 2026)",
+    "▸ Building API Fix — AI-powered API error analysis (RAG + LLM)",
+    "▸ React.js + REST API integration for CRM/ERP workflows",
+    "▸ AI/ML exposure — Driver Drowsiness Detection (Pantech.AI)",
+    "▸ B.Tech CSE — 85% (2020–2024) · AWS Restart trained",
   ],
 };
 
@@ -89,50 +95,61 @@ export const skillsContent = {
 export const technicalSkills = {
   categories: [
     {
+      title: "Generative AI",
+      skills: [
+        { name: "LLMs" },
+        { name: "Retrieval-Augmented Generation (RAG)" },
+        { name: "Prompt Engineering" },
+        { name: "LangChain" },
+      ],
+    },
+    {
+      title: "AI / ML",
+      skills: [
+        { name: "Python" },
+        { name: "Machine Learning Fundamentals" },
+        { name: "Computer Vision Concepts" },
+      ],
+    },
+    {
+      title: "Backend & APIs",
+      skills: [
+        { name: "FastAPI" },
+        { name: "REST APIs" },
+        { name: "Axios" },
+        { name: "API Integration" },
+        { name: "CRUD Operations" },
+      ],
+    },
+    {
       title: "Frontend",
       skills: [
         { name: "React.js" },
-        { name: "JavaScript" },
+        { name: "JavaScript (ES6+)" },
         { name: "HTML5" },
         { name: "CSS3" },
         { name: "Tailwind CSS" },
       ],
     },
     {
-      title: "API & Backend",
+      title: "Databases",
       skills: [
-        { name: "REST APIs" },
-        { name: "Axios" },
-        { name: "API Integration" },
-        { name: "CRUD Operations" },
-        { name: "Node.js" },
-      ],
-    },
-    {
-      title: "Databases (Basic)",
-      skills: [
-        { name: "SQL" },
-        { name: "MySQL" },
         { name: "PostgreSQL" },
+        { name: "Supabase" },
+        { name: "MySQL" },
         { name: "MongoDB" },
+        { name: "SQL" },
       ],
     },
     {
-      title: "Cloud (Basic)",
+      title: "Tools, Cloud & Automation",
       skills: [
-        { name: "AWS" },
-        { name: "Cloud Fundamentals" },
-        { name: "Networking" },
-      ],
-    },
-    {
-      title: "Programming Languages",
-      skills: [
-        { name: "Java" },
-        { name: "Python (Basics)" },
-        { name: "C / C++" },
-        { name: "jQuery / AJAX" },
-        { name: "Firebase" },
+        { name: "n8n" },
+        { name: "Make" },
+        { name: "Git" },
+        { name: "GitHub" },
+        { name: "AWS Fundamentals" },
+        { name: "Linux Basics" },
       ],
     },
     {
@@ -151,9 +168,9 @@ export const technicalSkills = {
 
 export const expertise = {
   badge: "What I Do",
-  heading: "Building interfaces for real business workflows",
+  heading: "Building products for real business workflows — and AI tools that help solve them",
   description:
-    "From CRM/ERP modules to analytics dashboards — React.js frontends wired to REST APIs, built to be reusable and role-aware.",
+    "From CRM/ERP modules and analytics dashboards to RAG-powered AI applications — React.js frontends, REST APIs and LLM pipelines, built to be reliable and role-aware.",
   categories: [
     {
       title: "Frontend Development",
@@ -166,6 +183,12 @@ export const expertise = {
       description: "Connecting frontends to backend services with Axios — handling loading states, errors, CRUD operations and UI updates.",
       stats: "Axios · REST",
       icon: "🔌",
+    },
+    {
+      title: "Generative AI & RAG",
+      description: "LLMs, Retrieval-Augmented Generation, prompt engineering and LangChain — building API Fix, which retrieves technical docs and generates contextual API troubleshooting suggestions.",
+      stats: "LLM · RAG",
+      icon: "🤖",
     },
     {
       title: "CRM / ERP Workflows",
@@ -185,16 +208,23 @@ export const expertise = {
       stats: "KPI · Performance",
       icon: "📊",
     },
-    {
-      title: "Embedded & Cloud Basics",
-      description: "Embedded C on Arduino, ESP32 and ESP8266, plus AWS fundamentals — IAM, cloud security and networking.",
-      stats: "Hardware · AWS",
-      icon: "☁️",
-    },
   ],
 };
 
 export const internshipsList = [
+  {
+    organization: "Dr. Reddy's Foundation",
+    role: "Generative AI Intern",
+    type: "Internship",
+    duration: "Oct 2026 – Present",
+    skills: [
+      "Learning Large Language Models (LLMs), Retrieval-Augmented Generation (RAG) and prompt engineering",
+      "Building hands-on skills with LangChain, embeddings and vector search",
+      "Applying these concepts in API Fix, an AI-powered API troubleshooting application",
+      "Retrieving technical documentation and generating contextual troubleshooting steps with an LLM",
+    ],
+    tech: ["LLMs", "RAG", "LangChain", "Prompt Engineering"],
+  },
   {
     organization: "GLDIGI Solutions Private Limited, Chennai",
     role: "Software Developer",
@@ -234,16 +264,57 @@ export const internshipsList = [
     ],
     tech: ["Networking", "Triple Play", "ISP", "Troubleshooting"],
   },
+  {
+    organization: "Tech Mahindra Foundation",
+    role: "AWS re/Start Intern",
+    type: "Training",
+    duration: "Apr 2025 – Jul 2025",
+    skills: [
+      "Completed AWS re/Start training with Tech Mahindra Foundation",
+      "Covered cloud fundamentals and core AWS services",
+      "Worked with IAM, cloud security and networking concepts",
+      "Built a foundation in cloud operations and deployment practices",
+    ],
+    tech: ["AWS", "Cloud Fundamentals", "IAM", "Security", "Networking"],
+  },
+  {
+    organization: "Pantech Prolabs India Pvt. Ltd. (Pantech.AI)",
+    role: "AI & Machine Learning Intern",
+    type: "Internship",
+    duration: "2024 · Online",
+    skills: [
+      "Worked in the development team on a Driver Drowsiness Detection project",
+      "Explored computer-vision-based monitoring to identify visual signs of driver drowsiness",
+      "Gained practical exposure to AI/ML project workflows and testing",
+      "Studied real-time monitoring techniques for detecting driver fatigue",
+    ],
+    tech: ["AI/ML", "Computer Vision", "Python"],
+  },
 ];
 
 export const projects = [
   {
-    id: "glfunnel",
+    id: "api-fix",
     number: "01",
-    badge: "🚀 Featured Project",
+    badge: "🤖 Featured Project",
+    title: "API Fix — AI-Powered API Error Analysis",
+    description:
+      "AI-powered application that analyzes API errors and suggests resolutions. Accepts API endpoint details, error messages and optional code snippets; ingests technical documentation through chunking and embeddings, retrieves relevant context with vector search, and uses an LLM to suggest likely causes and troubleshooting steps.",
+    techTags: ["Python", "FastAPI", "LLM", "RAG", "LangChain", "Embeddings", "Vector Search", "PostgreSQL", "Supabase"],
+    links: {
+      github: null,
+      demo: "https://9855525f.apifix-project.pages.dev/",
+    },
+    isFlagship: true,
+  },
+  {
+    id: "glfunnel",
+    number: "02",
+    badge: "💼 Professional Work",
     title: "GLFunnel",
     description:
       "CRM/ERP frontend modules integrated with backend data and business logic — covering leads, deals, properties, accounts, transactions and employee management with role-based access.",
+    note: "Built at my previous workplace — the codebase is client-owned, so there is no public repo or demo to share.",
     techTags: ["React.js", "Axios", "REST APIs", "CRM/ERP", "Role-Based UI"],
     links: {
       github: null,
@@ -253,11 +324,12 @@ export const projects = [
   },
   {
     id: "vidhaigal-school-erp",
-    number: "02",
-    badge: null,
+    number: "03",
+    badge: "💼 Professional Work",
     title: "Vidhaigal School ERP",
     description:
       "School ERP frontend covering student, staff, academic, operations and finance modules, connected to backend services through REST APIs.",
+    note: "Built at my previous workplace — the codebase is client-owned, so there is no public repo or demo to share.",
     techTags: ["React.js", "REST APIs", "ERP"],
     links: {
       github: null,
@@ -266,8 +338,22 @@ export const projects = [
     isFlagship: false,
   },
   {
+    id: "driver-drowsiness-detection",
+    number: "04",
+    badge: null,
+    title: "Driver Drowsiness Detection",
+    description:
+      "Computer-vision-based monitoring system to identify visual signs of driver drowsiness, built with the development team during the Pantech AI/ML internship.",
+    techTags: ["AI/ML", "Computer Vision", "Python"],
+    links: {
+      github: null,
+      demo: null,
+    },
+    isFlagship: false,
+  },
+  {
     id: "airlines-reservation",
-    number: "03",
+    number: "05",
     badge: null,
     title: "Airlines Reservation System",
     description:
@@ -281,7 +367,7 @@ export const projects = [
   },
   {
     id: "ml-transaction-alert",
-    number: "04",
+    number: "06",
     badge: null,
     title: "ML-Based User Transaction Alert",
     description:
@@ -332,8 +418,8 @@ export const education = {
 
 export const footerContent = {
   taglines: [
-    "Frontend Development & REST API Integration",
-    "React · JavaScript · Tailwind CSS · Axios",
+    "Generative AI · LLMs · RAG · LangChain",
+    "React.js · REST APIs · Tailwind CSS · FastAPI",
     "CRM/ERP Workflows & Dashboards",
   ],
   credential: "B.Tech CSE · AWS Restart Trained",

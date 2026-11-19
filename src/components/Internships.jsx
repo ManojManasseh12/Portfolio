@@ -4,7 +4,7 @@ const InternshipCard = ({ intern, index }) => (
   <div 
     data-aos="fade-up"
     data-aos-delay={index * 150}
-    className="group relative h-full flex flex-col justify-between rounded-3xl p-[1px] transition-all duration-500 bg-gradient-to-b from-white/15 via-white/5 to-transparent hover:from-red-500/60 hover:via-red-500/20 hover:to-transparent hover:-translate-y-2 hover:shadow-[0_25px_60px_-15px_rgba(82,222,197,0.14)]"
+    className="group relative h-full flex flex-col justify-between rounded-3xl p-[1px] transition-all duration-500 bg-gradient-to-b from-white/15 via-white/10 to-white/10 hover:from-red-500/60 hover:via-red-500/30 hover:to-red-500/20 hover:shadow-[0_25px_60px_-15px_rgba(82,222,197,0.14)]"
   >
     <div className="relative h-full flex flex-col justify-between rounded-3xl p-7 md:p-8 bg-[#0d1521]/95 backdrop-blur-xl transition-all duration-500 group-hover:bg-[#121c2e]">
       
@@ -25,17 +25,19 @@ const InternshipCard = ({ intern, index }) => (
         </div>
 
         {/* Role & Organization */}
-        <h3 className="text-white text-2xl font-black mb-2 tracking-tight group-hover:text-red-400 transition-colors">
-          {intern.role}
-        </h3>
-        <p className="text-white/60 text-xs font-bold tracking-wider mb-6 uppercase">
-          {intern.organization}
-        </p>
+        <div className="lg:min-h-[6.5rem] mb-6">
+          <h3 className="text-white text-2xl font-black mb-2 tracking-tight group-hover:text-red-400 transition-colors">
+            {intern.role}
+          </h3>
+          <p className="text-white/60 text-xs font-bold tracking-wider uppercase">
+            {intern.organization}
+          </p>
+        </div>
 
-        {/* Bullet Points */}
+        {/* Bullet Points — fixed 3-line slots so every point sits on the same level */}
         <div className="space-y-3 mb-8">
           {intern.skills.map((skill, i) => (
-            <div key={i} className="flex items-start gap-3 text-sm text-white/70 leading-relaxed group-hover:text-white/90 transition-colors">
+            <div key={i} className="flex items-start gap-3 text-sm text-white/70 leading-relaxed group-hover:text-white/90 transition-colors min-h-[68px]">
               <span className="text-[#52dec5] font-black mt-0.5 text-xs shrink-0 select-none">▸</span>
               <span>{skill}</span>
             </div>
@@ -46,7 +48,7 @@ const InternshipCard = ({ intern, index }) => (
       {/* Technologies Footer */}
       <div className="pt-5 border-t border-white/10 mt-auto">
         <h4 className="text-white/40 text-[11px] font-bold uppercase tracking-wider mb-3">Technologies</h4>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 min-h-[3.75rem] content-start">
           {intern.tech.map((t) => (
             <span 
               key={t}
@@ -85,7 +87,7 @@ const Internships = () => {
         </div>
 
         {/* Internship Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 items-stretch lg:auto-rows-[1fr]">
           {internshipsList.map((intern, index) => (
             <InternshipCard key={intern.organization} intern={intern} index={index} />
           ))}
